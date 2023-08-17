@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #因为部署在liunx上,所以要加这一行
+      config:
+        namespace: public
+        server-addr: 127.0.0.1:8848
+        group: DEFAULT_GROUP
+        file-extension: yaml
+  application:
+    name: include-goods
+

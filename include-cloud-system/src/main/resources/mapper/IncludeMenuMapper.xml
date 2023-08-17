@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.include.system.mapper.IncludeMenuMapper">
+    
+    <select id="getMenuList" resultType="com.include.comm.entity.IncludeMenu">
+        SELECT
+            DISTINCT(im.id) as id,
+                    im.route as route,
+                    im.menu_name as menuName,
+                    im.white as white,
+                    im.permission as permission,
+                    im.create_time as createTime,
+                    im.create_by as createBy,
+                    im.update_time as updateTime,
+                    im.update_by as updateBy
+        FROM
+            include_user AS iu
+                LEFT JOIN include_user_role AS iur ON ( iu.id = iur.user_id )
+                left join include_role_menu as irm on (iur.role_id = irm.role_id)
+                left join include_menu as im on (irm.menu_id = im.id)
+        where iu.id = #{userId}
+    </select>
+</mapper>
