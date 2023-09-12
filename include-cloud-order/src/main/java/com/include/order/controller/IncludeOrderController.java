@@ -4,6 +4,8 @@ import com.include.comm.entity.IncludeOrder;
 import com.include.comm.entity.R;
 import com.include.order.service.IIncludeOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,14 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description:
  **/
 @RestController
+@RefreshScope
 @RequestMapping("includeOrder")
 public class IncludeOrderController {
 
     private final IIncludeOrderService includeOrderService;
 
+    @Value("${my.property}")
+    private String myProperty;
+
     @Autowired
     public IncludeOrderController(IIncludeOrderService includeOrderService) {
         this.includeOrderService = includeOrderService;
+    }
+
+    @RequestMapping("demo")
+    public R demo(){
+        return R.oK(myProperty);
     }
 
     @RequestMapping("getList")

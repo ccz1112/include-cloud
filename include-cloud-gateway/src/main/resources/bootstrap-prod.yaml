@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 98085a63-0aad-4441-b8f7-30fb972c9128
+        group: include
+        file-extension: yaml
+        refresh-enabled: true

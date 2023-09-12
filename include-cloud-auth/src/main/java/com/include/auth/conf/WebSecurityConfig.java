@@ -30,6 +30,9 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author: chenshuo
  * @Date: 2023-03-01
@@ -45,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
+        //EndpointRequest.toAnyEndpoint();
         //http.formLogin().loginProcessingUrl("");
         http.formLogin().and().authorizeRequests(request ->
                 request.antMatchers("/oauth/**", "/login/**", "/logout/**")
@@ -54,6 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin(form ->
                 form.loginPage("http://127.0.0.1:8888").loginProcessingUrl("/login")
         );
+    }
+
+    public static void main(String[] args) {
+        Map map = new HashMap();
+        map.put("demo",123);
+        System.out.println((String) map.get("dd"));
     }
 
     @Bean

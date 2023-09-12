@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * @author: chenshuo
@@ -76,5 +78,20 @@ public class IncludeOrderServiceImpl implements IIncludeOrderService {
         includeOrderMapper.insert(includeOrder);
 
         return R.oK();
+    }
+
+    public <T> List<T> readFile(String path, Function<String,T> converter){
+        List<T> result = new ArrayList<>();
+        result.add(converter.apply(""));
+        return result;
+    }
+
+    public void demo(){
+        String path = "111";
+        //this.readFile(path,IncludeOrder::converter);
+    }
+    public static IncludeOrder converter(String line){
+
+        return new IncludeOrder();
     }
 }

@@ -29,17 +29,14 @@ public class IncludePhraseServiceImpl implements IIncludePhraseService {
 
     private final RedisTemplate<String,String> redisTemplate;
 
-    private final IdWorker idWorker;
 
-    public IncludePhraseServiceImpl(IncludePhraseMapper includePhraseMapper, RedisTemplate<String, String> redisTemplate, IdWorker idWorker) {
+    public IncludePhraseServiceImpl(IncludePhraseMapper includePhraseMapper, RedisTemplate<String, String> redisTemplate) {
         this.includePhraseMapper = includePhraseMapper;
         this.redisTemplate = redisTemplate;
-        this.idWorker = idWorker;
     }
 
     @Override
     public R save(IncludePhrase includePhrase) {
-        includePhrase.setRoomCode(idWorker.nextId()+"");
         includePhraseMapper.insert(includePhrase);
         return R.oK(includePhrase.getRoomCode());
     }

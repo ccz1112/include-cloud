@@ -7,8 +7,12 @@ import com.include.comm.entity.IncludeRole;
 import com.include.comm.entity.R;
 import com.include.system.mapper.IncludeRoleMapper;
 import com.include.system.service.IIncludeRoleService;
+import lombok.Cleanup;
+import lombok.val;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +35,7 @@ public class IncludeRoleServiceImpl implements IIncludeRoleService {
 
     @Override
     public R insertRole(IncludeRole role) {
+
         includeRoleMapper.insert(role);
         return R.oK();
     }
